@@ -2,6 +2,7 @@ import sys
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QTimer
 
+
 def main():
     from src.main import MainWindow
 
