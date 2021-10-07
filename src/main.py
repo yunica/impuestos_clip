@@ -22,6 +22,7 @@ class MainWindow(QWidget):
     def __init__(self):
         super(MainWindow, self).__init__()
         # monto result
+        self.ROUND_LIMIT = 10
         self.monto_result = QLabel()
         self.monto_result.setFont(QFont("Arial", 20))
         self.monto_result.setStyleSheet("text-align: right")
@@ -86,7 +87,7 @@ class MainWindow(QWidget):
 
             if not monto_text:
                 raise Exception("no data")
-            monto = round(float(monto_text) / 1.18, 8)
+            monto = round(float(monto_text) / 1.18, self.ROUND_LIMIT)
             copy(monto)
             self.monto_result.setText(str(monto))
         except Exception as ex:
