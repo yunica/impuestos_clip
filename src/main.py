@@ -35,7 +35,7 @@ class MainWindow(QWidget):
         # old montos
 
         self.layout_montos = QVBoxLayout()
-        self.old_montos = []
+        self.old_montos = {}
 
         self.initUI()
 
@@ -97,10 +97,10 @@ class MainWindow(QWidget):
             self.monto_edit.setText("")
         else:
             self.monto_edit.setText("")
-            old_montos = list(self.old_montos)
-            old_montos.append(monto_text)
-            old_montos = list(dict.fromkeys(old_montos))
-            self.old_montos = old_montos
+            if self.old_montos.get(monto_text):
+                self.old_montos[monto_text] += 1
+            else:
+                self.old_montos[monto_text] = 1
 
     def old_montos_layout(self):
         time = QTime.currentTime().toString()
@@ -115,7 +115,9 @@ class MainWindow(QWidget):
         self.layout_montos.addWidget(line)
 
         # add old monto
-        for i in self.old_montos[::-1][:8]:
+        old_montos = dict(self.old_montos)
+        order = list(sorted(old_montos, key=old_montos.__getitem__))[::-1][:8]
+        for i in order:
             go_btn = QPushButton(str(i))
             go_btn.clicked.connect(partial(self.calculate_monto_result, i))
             self.layout_montos.addWidget(go_btn)
