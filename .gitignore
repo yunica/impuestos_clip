@@ -2,3 +2,7 @@ dist/
 build/
 *.pyc
 .idea/
+bin/
+lib/
+impuestoss/
+*.spec

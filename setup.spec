@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(['setup.py'],
-             pathex=['/home/yunica/projects/back/impuesto'],
+             pathex=['/mnt'],
              binaries=[],
              datas=[],
              hiddenimports=[],
